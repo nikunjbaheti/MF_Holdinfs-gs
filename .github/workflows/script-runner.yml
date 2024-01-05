@@ -20,6 +20,9 @@ jobs:
       - name: Run JavaScript script with jQuery
         run: node MF_Holdings.js
 
+      - name: Run Output.js
+        run: node Output.js
+
       - name: Commit changes
         run: |
           git config --global user.name "GitHub Actions"

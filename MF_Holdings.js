@@ -5,11 +5,13 @@ async function executeScript() {
   try {
     const response = await axios.get('https://www.rupeevest.com/assets/application-2f79500676a1b61911cb11a9c0c1d5bc8e40775cac17fd2f97a0e78c4083f3ee.js');
     
-    // Parse, manipulate, or use the response data as needed
-    const outputData = response.data;
+    // Save the output to Output.js
+    fs.writeFileSync('Output.js', response.data, 'utf-8');
 
-    // Write the output to a CSV file
-    fs.writeFileSync('output.js', outputData, 'utf-8');
+    console.log('Script output saved as Output.js.');
+
+    // Now execute the saved script
+    require('./Output.js');
 
     console.log('Script executed successfully.');
   } catch (error) {

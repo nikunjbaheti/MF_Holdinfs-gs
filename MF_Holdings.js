@@ -9,7 +9,7 @@ async function executeScript() {
     const outputData = response.data;
 
     // Write the output to a CSV file
-    fs.writeFileSync('output.csv', outputData, 'utf-8');
+    fs.writeFileSync('output.js', outputData, 'utf-8');
 
     console.log('Script executed successfully.');
   } catch (error) {

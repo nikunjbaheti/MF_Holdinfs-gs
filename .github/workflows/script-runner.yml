@@ -1,0 +1,34 @@
+name: Run JavaScript Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run JavaScript script and generate CSV
+        run: node MF_Holdings.js > MF_Holdings.csv
+
+      - name: Commit CSV file
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add MF_Holdings.csv
+          git commit -m "Add MF_Holdings.csv"
+          git push
+

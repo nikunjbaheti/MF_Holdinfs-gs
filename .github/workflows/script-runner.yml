@@ -23,4 +23,4 @@ jobs:
         run: npm install
 
       - name: Run JavaScript script with jQuery
-        run: node your-script.js
+        run: node MF_Holdings.js

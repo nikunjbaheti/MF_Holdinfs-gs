@@ -1,9 +1,7 @@
 name: Run JavaScript Script
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:  # Triggered manually
 
 jobs:
   run-script:

@@ -2,8 +2,8 @@ name: Run Python Scripts
 
 on:
   workflow_dispatch:  # Triggered manually
-#  schedule:
-#    - cron: '0 0,12 * * *'  # Run every 12 hours
+  schedule:
+    - cron: '0 0,12 * * *'  # Run every 12 hours
 
 jobs:
   build:

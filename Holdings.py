@@ -4,17 +4,18 @@ import csv
 def get_scheme_data(scheme_code):
     url = f"https://www.rupeevest.com/home/get_mf_portfolio_tracker?schemecode={scheme_code}"
     try:
+        print(f"Fetching data for scheme code: {scheme_code}")
         response = requests.get(url)
         response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
         return response.json()
     except requests.exceptions.HTTPError as errh:
-        print ("HTTP Error:",errh)
+        print ("HTTP Error:", errh)
     except requests.exceptions.ConnectionError as errc:
-        print ("Error Connecting:",errc)
+        print ("Error Connecting:", errc)
     except requests.exceptions.Timeout as errt:
-        print ("Timeout Error:",errt)
+        print ("Timeout Error:", errt)
     except requests.exceptions.RequestException as err:
-        print ("OOps: Something went wrong",err)
+        print ("OOps: Something went wrong", err)
     return None
 
 def extract_data(json_data):
@@ -63,6 +64,8 @@ def main():
 
         for entry in data_list:
             writer.writerow(entry)
+
+    print("Script completed. Data written to output_data.csv.")
 
 if __name__ == "__main__":
     main()

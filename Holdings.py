@@ -3,10 +3,24 @@ import csv
 
 def get_scheme_data(scheme_code):
     url = f"https://www.rupeevest.com/home/get_mf_portfolio_tracker?schemecode={scheme_code}"
-    response = requests.get(url)
-    return response.json()
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
+        return response.json()
+    except requests.exceptions.HTTPError as errh:
+        print ("HTTP Error:",errh)
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
+    except requests.exceptions.RequestException as err:
+        print ("OOps: Something went wrong",err)
+    return None
 
 def extract_data(json_data):
+    if not json_data:
+        return []
+
     fund_info = json_data.get("fund_info", [])
     stock_data = json_data.get("stock_data", [])
 
@@ -37,11 +51,12 @@ def main():
     data_list = []
     for scheme_code in scheme_codes:
         scheme_data = get_scheme_data(scheme_code)
-        extracted_data = extract_data(scheme_data)
-        data_list.extend(extracted_data)
+        if scheme_data:
+            extracted_data = extract_data(scheme_data)
+            data_list.extend(extracted_data)
 
     # Write the collected data to a CSV file
-    with open('MFHoldings.csv', 'w', newline='') as csvfile:
+    with open('output_data.csv', 'w', newline='') as csvfile:
         fieldnames = ["s_name", "aumdate", "aumtotal", "fincode", "invdate", "noshares", "percent_aum"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()

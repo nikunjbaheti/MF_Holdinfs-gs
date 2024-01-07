@@ -1,4 +1,4 @@
-name: Run Python Scripts
+name: Run Python Scripts and Commit CSV Files
 
 on:
   workflow_dispatch:  # Triggered manually
@@ -30,19 +30,13 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           python MFCode.py
-          python BSEData.py
           python Stkcode.py
           python Holdings.py
 
-      - name: Create or update CSV files
+      - name: Commit CSV files
         run: |
-          # Assuming CSV files are in the same directory
-          for file in *.csv; do
-            [ -e "$file" ] || continue
-            echo "Processing $file"
-            git config --global user.email "actions@github.com"
-            git config --global user.name "GitHub Actions"
-            git add "$file"
-            git commit -m "Automated commit - $file" || true
-          done
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add *.csv  # Replace 'path/to/your/csv/files' with the actual path
+          git commit -m "Auto-commit CSV files" || true  # Continue even if there are no changes
           git push

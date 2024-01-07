@@ -41,7 +41,7 @@ def main():
         data_list.extend(extracted_data)
 
     # Write the collected data to a CSV file
-    with open('output_data.csv', 'w', newline='') as csvfile:
+    with open('MFHoldings.csv', 'w', newline='') as csvfile:
         fieldnames = ["s_name", "aumdate", "aumtotal", "fincode", "invdate", "noshares", "percent_aum"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()

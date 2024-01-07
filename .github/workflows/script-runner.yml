@@ -1,32 +1,47 @@
-name: Run JavaScript Script
+name: Run Python Scripts
 
 on:
   workflow_dispatch:  # Triggered manually
+  schedule:
+    - cron: '0 0,12 * * *'  # Run every 12 hours
 
 jobs:
-  run-script:
+  build:
+    name: MF Holdings
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        
-      - name: Install dependencies
-        run: npm install axios
+      - name: Setup Python
+        uses: actions/setup-python@v4
 
-      - name: Run JavaScript script with jQuery
-        run: node MF_Holdings.js
-
-      - name: Run Output.js
-        run: node Output.js
-
-      - name: Commit changes
+      - name: Update pip
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add output.csv
-          git commit -m "Update output.csv"
+          python -m pip install --upgrade pip
+
+      - name: Install requirements
+        run: |
+          python -m pip install -r requirements.txt  # Replace 'path/to/requirements.txt' with the actual path
+
+      - name: Run Python Scripts
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          python MFCode.py
+          python Stkcode.py
+          python Holdings.py
+
+      - name: Create or update CSV files
+        run: |
+          # Assuming CSV files are in the same directory
+          for file in *.csv; do
+            [ -e "$file" ] || continue
+            echo "Processing $file"
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git add "$file"
+            git commit -m "Automated commit - $file" || true
+          done
           git push

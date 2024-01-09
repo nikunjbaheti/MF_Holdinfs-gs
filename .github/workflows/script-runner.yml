@@ -17,9 +17,14 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Delete CSV Files
+      - name: Check for CSV Files
         run: |
-          find . -type f -name "*.csv" -delete
+          if [ -n "$(find . -maxdepth 1 -name '*.csv' -print -quit)" ]; then
+            echo "CSV files found. Deleting..."
+            find . -type f -name "*.csv" -delete
+          else
+            echo "No CSV files found. Skipping deletion."
+          fi
 
       - name: Commit and Push Changes
         run: |

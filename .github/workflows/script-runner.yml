@@ -16,6 +16,18 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v5
+
+      - name: Delete CSV Files
+        run: |
+          find . -type f -name "*.csv" -delete
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "Delete CSV files"
+          git push
           
       - name: Install dependencies
         run: |

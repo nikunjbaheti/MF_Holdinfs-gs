@@ -2,7 +2,7 @@ name: Run Python Scripts
 
 on:
   workflow_run:
-    workflows: ["Script Runner"]
+    workflows: ["Run Python Scripts and Commit CSV Files"]
     types:
       - completed
 

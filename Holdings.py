@@ -67,5 +67,28 @@ def main():
 
     print("Script completed. Data written to output_data.csv.")
 
+    # Dictionary to keep track of the first occurrence of fincode for each mutual fund scheme
+    unique_fincode_per_scheme = {}
+
+    # Filter and keep only the first occurrence of fincode for each mutual fund scheme
+    filtered_data_list = []
+    for entry in data_list:
+        scheme_fincode_key = (entry["s_name"], entry["fincode"])
+        if scheme_fincode_key not in unique_fincode_per_scheme:
+            # First occurrence, add to the filtered list and update the dictionary
+            filtered_data_list.append(entry)
+            unique_fincode_per_scheme[scheme_fincode_key] = True
+
+    # Write the filtered data to a CSV file
+    with open('output_data_filtered.csv', 'w', newline='') as csvfile:
+        fieldnames = ["s_name", "aumdate", "aumtotal", "fincode", "invdate", "noshares", "percent_aum"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for entry in filtered_data_list:
+            writer.writerow(entry)
+
+    print("Script completed. Filtered data written to output_data_filtered.csv.")
+
 if __name__ == "__main__":
     main()

@@ -49,7 +49,7 @@ jobs:
           python BSEData.py
           python Stkcode.py
           python Holdings.py
-          python Debt Holdings.py
+          python DebtHoldings.py
 
       - name: Commit CSV files
         run: |

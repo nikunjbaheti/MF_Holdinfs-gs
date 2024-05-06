@@ -50,11 +50,11 @@ jobs:
           python Stkcode.py
           python Holdings.py
           python Benchmark.py
-          python Historical Returns.py
-          python Index Latest.py
-          python Peer Comparison.py
-          python Scheme Risk.py
-          python Returns Data.py
+          python "Historical Returns.py"
+          python "Index Latest.py"
+          python "Peer Comparison.py"
+          python "Scheme Risk.py"
+          python "Returns Data.py"
           
       - name: Commit CSV files
         run: |

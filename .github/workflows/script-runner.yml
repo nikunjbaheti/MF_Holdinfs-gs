@@ -28,7 +28,7 @@ jobs:
           fi
 
       - name: Commit and Push Changes
-        if: success()  # Only run this step if the previous step was successful
+        if: steps.check-csv.outcome == 'success'  # Only run this step if the previous step was successful
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"

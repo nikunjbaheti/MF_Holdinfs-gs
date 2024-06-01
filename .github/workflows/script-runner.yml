@@ -47,7 +47,6 @@ jobs:
         run: |
           python MFCode.py
           python BSEData.py
-          python Holdings.py
           python Benchmark.py
           python "Historical Returns.py"
           python "Index Latest.py"

@@ -46,7 +46,6 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           python MFCode.py
-          python BSEData.py
           python Benchmark.py
           python "Historical Returns.py"
           python "Index Latest.py"

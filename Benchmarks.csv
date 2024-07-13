@@ -1100,7 +1100,6 @@ MFCode,indexcode,indexname,weightage
 43240,174,BSE SENSEX - TRI,20.0
 47949,544,Nifty Healthcare Index - TRI,
 3392,443,Nifty Short Duration Debt Index,
-48360,434,NIFTY Ultra Short Duration Debt Index,
 39495,22,BSE 500,
 44156,500,CRISIL Liquid Overnight Index,
 45364,417,CRISIL Medium Duration Debt Index,
@@ -1154,7 +1153,6 @@ MFCode,indexcode,indexname,weightage
 39948,277,Nifty 50 Arbitrage,
 47977,554,Nifty200 Momentum 30 - TRI,
 44314,165,NIFTY NEXT 50 - TRI,
-48392,367,CRISIL Ultra Short Term Debt Index,
 46226,601,CRISIL IBX 60:40 SDL + AAA PSU Index - April 2025,
 46773,379,BSE 500 - TRI,
 5925,367,CRISIL Ultra Short Term Debt Index,

@@ -42,7 +42,3 @@ if response.status_code == 200:
         # Write the data
         for row in data_to_write:
             writer.writerow(row)
-
-    print(f"Data has been successfully written to {csv_file_name}")
-else:
-    print(f"Failed to fetch data. Status code: {response.status_code}")

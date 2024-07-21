@@ -35,7 +35,6 @@ def fetch_json_and_save_csv():
                 for item in json_data['portfolio']:
                     csvwriter.writerow(item.values())
 
-
         except requests.exceptions.RequestException as e:
 
 if __name__ == "__main__":

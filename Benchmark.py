@@ -34,11 +34,8 @@ def fetch_json_and_save_csv():
                 # Write data rows
                 for item in json_data:
                     csvwriter.writerow([mf_code, item['indexcode'], item['indexname'], item['weightage']])
-
-            print(f'Data for MFCode={mf_code} and schemecode={dynamic_number} successfully fetched and appended to {output_csv_filename}')
-
+       
         except requests.exceptions.RequestException as e:
-            print(f'Error fetching data from {url}: {e}')
 
 if __name__ == "__main__":
     fetch_json_and_save_csv()

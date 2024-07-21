@@ -34,7 +34,7 @@ def fetch_json_and_save_csv():
                 # Write data rows
                 for item in json_data:
                     csvwriter.writerow([mf_code, item['indexcode'], item['indexname'], item['weightage']])
-       
+           
         except requests.exceptions.RequestException as e:
 
 if __name__ == "__main__":

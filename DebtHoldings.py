@@ -35,10 +35,8 @@ def fetch_json_and_save_csv():
                 for item in json_data['portfolio']:
                     csvwriter.writerow(item.values())
 
-            print(f'Data for fincode={dynamic_number} successfully fetched and appended to {output_csv_filename}')
 
         except requests.exceptions.RequestException as e:
-            print(f'Error fetching data from {url}: {e}')
 
 if __name__ == "__main__":
     fetch_json_and_save_csv()

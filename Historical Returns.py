@@ -3,7 +3,7 @@ import csv
 
 def fetch_json_and_save_csv():
     # Specify the CSV file name for output
-    output_csv_filename = 'Historical returns.csv'
+    output_csv_filename = 'Historical_returns.csv'
 
     with open('MFCodes.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
@@ -22,14 +22,19 @@ def fetch_json_and_save_csv():
                 response.raise_for_status()  # Raise an exception for bad responses
 
                 # Parse JSON data
-                json_data = response.json()['returns_year']
+                json_data = response.json().get('returns_year', [])
+
+                # If json_data is empty, skip to the next iteration
+                if not json_data:
+                    print(f"No data returned for schemecode {dynamic_number}")
+                    continue
 
                 # Write JSON data to CSV file
-                with open(output_csv_filename, 'a', newline='') as csvfile:
-                    csvwriter = csv.writer(csvfile)
+                with open(output_csv_filename, 'a', newline='') as output_csvfile:
+                    csvwriter = csv.writer(output_csvfile)
 
                     # Write header if the file is empty
-                    if csvfile.tell() == 0:
+                    if output_csvfile.tell() == 0:
                         csvwriter.writerow(json_data[0].keys())
 
                     # Write data rows
@@ -37,7 +42,7 @@ def fetch_json_and_save_csv():
                         csvwriter.writerow(item.values())
 
             except requests.exceptions.RequestException as e:
-                print(f"Error fetching data for MFCode {mf_code}: {e}")
-                
+                print(f"Error fetching data for schemecode {dynamic_number}: {e}")
+
 if __name__ == "__main__":
     fetch_json_and_save_csv()

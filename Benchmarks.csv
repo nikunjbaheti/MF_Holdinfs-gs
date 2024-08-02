@@ -643,10 +643,10 @@ MFCode,indexcode,indexname,weightage
 44504,350,Nifty Smallcap 250 - TRI,
 1084,430,NIFTY Medium Duration Debt Index,
 43809,312,NIFTY 500 - TRI,
-48465,298,BSE 200 - TRI,65.0
-48465,443,Nifty Short Duration Debt Index,20.0
-48465,65,Gold-India,10.0
-48465,199,Silver,5.0
+48465,312,NIFTY 500 - TRI,65.0
+48465,443,Nifty Short Duration Debt Index,25.0
+48465,65,Gold-India,7.5
+48465,199,Silver,2.5
 1981,450,NIFTY 50 Hybrid Composite Debt 50:50 Index,90.0
 1981,57,MSCI World,5.0
 1981,65,Gold-India,5.0
@@ -1415,8 +1415,8 @@ MFCode,indexcode,indexname,weightage
 21920,235,Russell 1000 Index,
 46053,584,Nifty India Manufacturing - TRI,
 815,55,MSCI Emerging Market Index,
-45017,44,CRISIL Short Term Bond Index,50.0
-45017,312,NIFTY 500 - TRI,35.0
+45017,312,NIFTY 500 - TRI,50.0
+45017,44,CRISIL Short Term Bond Index,35.0
 45017,65,Gold-India,13.0
 45017,199,Silver,2.0
 44267,500,CRISIL Liquid Overnight Index,
@@ -1783,6 +1783,7 @@ MFCode,indexcode,indexname,weightage
 48534,275,Nifty 10 yr Benchmark G-Sec,
 33836,553,NIFTY OIL & GAS - TRI,
 35200,312,NIFTY 500 - TRI,
+48499,312,NIFTY 500 - TRI,
 48514,359,NIFTY50 Equal Weight - TRI,
 48651,625,Nifty Total Market - TRI,
 48653,360,Nifty100 Low Volatility 30 - TRI,
@@ -1796,3 +1797,4 @@ MFCode,indexcode,indexname,weightage
 48963,312,NIFTY 500 - TRI,
 48967,199,Silver,
 48976,749,CRISIL Broad Based Gilt Index,
+48992,750,Nifty India Tourism Index - TRI,

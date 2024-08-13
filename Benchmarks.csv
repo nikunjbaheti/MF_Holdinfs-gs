@@ -21,12 +21,12 @@ MFCode,indexcode,indexname,weightage
 1492,312,NIFTY 500 - TRI,
 27621,250,Nifty CPSE,
 27621,337,Nifty CPSE - TRI,
-33151,174,BSE SENSEX - TRI,
 1495,326,NIFTY 200 - TRI,65.0
 1495,433,NIFTY Composite Debt Index,25.0
 1495,65,Gold-India,6.0
 1495,519,iCOMDEX Composite Index,3.0
 1495,199,Silver,1.0
+33151,174,BSE SENSEX - TRI,
 4457,314,NIFTY 100 - TRI,
 9767,366,NIFTY LargeMidcap 250 - TRI,
 1482,301,CRISIL Hybrid 35+65 - Aggressive Index,
@@ -534,6 +534,7 @@ MFCode,indexcode,indexname,weightage
 48892,634,Nifty India Defence - TRI,
 45379,542,NYSE FANG+ TRI,
 30426,232,Crisil 10 Yr Gilt Index,
+45614,154,NIFTY 50 - TRI,
 44399,350,Nifty Smallcap 250 - TRI,
 48334,312,NIFTY 500 - TRI,
 3286,728,CRISIL Short Duration Debt Index,
@@ -561,7 +562,6 @@ MFCode,indexcode,indexname,weightage
 46625,450,NIFTY 50 Hybrid Composite Debt 50:50 Index,
 46971,652,CRISIL IBX Gilt Index - April 2029,
 44630,520,Russell 1000 Equal Weighted Technology Index,
-45614,154,NIFTY 50 - TRI,
 48388,350,Nifty Smallcap 250 - TRI,
 3533,434,NIFTY Ultra Short Duration Debt Index,
 45338,302,CRISIL Hybrid 85+15 - Conservative Index,
@@ -1212,6 +1212,7 @@ MFCode,indexcode,indexname,weightage
 7615,307,BSE 500 Shariah - TRI,
 45242,416,CRISIL Banking and PSU Debt Index,
 8303,301,CRISIL Hybrid 35+65 - Aggressive Index,
+48332,330,Nifty Financial Services - TRI,
 44737,352,Nifty Smallcap 50 - TRI,
 44156,500,CRISIL Liquid Overnight Index,
 33878,154,NIFTY 50 - TRI,
@@ -1243,7 +1244,6 @@ MFCode,indexcode,indexname,weightage
 43822,42,CRISIL Liquid Debt Index,
 3841,57,MSCI World,
 44073,367,CRISIL Ultra Short Term Debt Index,
-48332,330,Nifty Financial Services - TRI,
 45861,349,Nifty Midcap 150 - TRI,
 15502,42,CRISIL Liquid Debt Index,
 2381,443,Nifty Short Duration Debt Index,

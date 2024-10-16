@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Triggered manually
   schedule:
     - cron: '0 0 * * *'  # Run every 24 hours at midnight
-    
+
 jobs:
   build:
     name: MF Holdings
@@ -16,6 +16,8 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'  # Specify your Python version
 
       - name: Check for CSV Files
         run: |
@@ -37,16 +39,19 @@ jobs:
           git add .
           git commit -m "Delete CSV files" || true  # Continue if there are no changes
           git push
-          
-      - name: Install dependencies
+
+      - name: Install dependencies in virtual environment
         run: |
+          python -m venv venv  # Create virtual environment
+          source venv/bin/activate  # Activate virtual environment
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt  # Replace 'requirements.txt' with the actual path
+          pip install -r requirements.txt  # Replace 'requirements.txt' with the actual path
 
       - name: Run Python Scripts
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
+          source venv/bin/activate  # Activate virtual environment
           python MFCode.py
           python Benchmark.py
           python "Historical Returns.py"
@@ -60,5 +65,4 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add *.csv  # Replace 'path/to/your/csv/files' with the actual path
-          git commit -m "Auto-commit CSV files" || true  # Continue even if there are no changes
-          git push
+          git commit -

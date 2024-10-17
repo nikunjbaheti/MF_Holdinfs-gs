@@ -61,8 +61,9 @@ jobs:
           python "Returns Data.py"
           
       - name: Commit CSV files
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add *.csv  # Replace 'path/to/your/csv/files' with the actual path
-          git commit -
+          run: |
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git add *.csv  # Replace 'path/to/your/csv/files' with the actual path
+            git commit -m "Commit CSV files" || true  # Ensure it continues even if there's nothing to commit
+            git push

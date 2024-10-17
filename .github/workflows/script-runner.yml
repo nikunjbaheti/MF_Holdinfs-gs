@@ -1,57 +1,57 @@
 name: Run Python Scripts and Commit CSV Files
 
 on:
-  workflow_dispatch:  # Triggered manually
+  workflow_dispatch:  # Trigger manually
   schedule:
-    - cron: '0 0 * * *'  # Run every 24 hours at midnight
+    - cron: '0 0 * * *'  # Run every day at midnight
 
 jobs:
   build:
-    name: MF Holdings
+    name: Mutual Fund Holdings
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'  # Specify your Python version
+          python-version: '3.x'  # Specify Python version
 
-      - name: Check for CSV Files
+      - name: Check for existing CSV files
         run: |
-          echo "Checking for CSV files..."
+          echo "Checking for existing CSV files..."
           if [ -n "$(find . -maxdepth 1 -name '*.csv' -print -quit)" ]; then
-            echo "CSV files found. Deleting..."
+            echo "Found CSV files. Deleting..."
             find . -type f -name "*.csv" -delete
           else
-            echo "No CSV files found. Skipping deletion."
-            exit 0  # Exit successfully to skip the next steps
+            echo "No CSV files found."
+            exit 0  # Skip next steps if no files
           fi
-        id: check-csv  # Added step id for conditional logic
+        id: check_csv
 
-      - name: Commit and Push Changes
-        if: steps.check-csv.outcome == 'success'  # Only run this step if CSV files were found and deleted
+      - name: Commit CSV deletion
+        if: steps.check_csv.outcome == 'success'
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          git commit -m "Delete CSV files" || true  # Continue if there are no changes
+          git commit -m "Remove old CSV files" || true  # Continue if no changes
           git push
 
       - name: Install dependencies in virtual environment
         run: |
-          python -m venv venv  # Create virtual environment
-          source venv/bin/activate  # Activate virtual environment
+          python -m venv venv
+          source venv/bin/activate
           python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Replace 'requirements.txt' with the actual path
+          pip install -r requirements.txt
 
-      - name: Run Python Scripts
+      - name: Run Python scripts
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          source venv/bin/activate  # Activate virtual environment
+          source venv/bin/activate
           python MFCode.py
           python Benchmark.py
           python "Historical Returns.py"
@@ -59,11 +59,11 @@ jobs:
           python "Peer Comparison.py"
           python "Scheme Risk.py"
           python "Returns Data.py"
-          
-      - name: Commit CSV files
-          run: |
-            git config --global user.email "actions@github.com"
-            git config --global user.name "GitHub Actions"
-            git add *.csv  # Replace 'path/to/your/csv/files' with the actual path
-            git commit -m "Commit CSV files" || true  # Ensure it continues even if there's nothing to commit
-            git push
+
+      - name: Commit new CSV files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add *.csv
+          git commit -m "Commit updated CSV files" || true
+          git push

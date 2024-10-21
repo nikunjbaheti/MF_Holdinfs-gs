@@ -54,6 +54,7 @@ jobs:
           source venv/bin/activate
           python MFCode.py
           python Benchmark.py
+          python Stkcode.py
           python "Historical Returns.py"
           python "Index Latest.py"
           python "Peer Comparison.py"

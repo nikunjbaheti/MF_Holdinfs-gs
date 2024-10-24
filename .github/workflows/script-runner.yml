@@ -55,6 +55,7 @@ jobs:
           python MFCode.py
           python Benchmark.py
           python Stkcode.py
+          python Holdings.py
           python "Historical Returns.py"
           python "Index Latest.py"
           python "Peer Comparison.py"

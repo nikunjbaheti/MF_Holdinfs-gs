@@ -53,15 +53,9 @@ jobs:
         run: |
           source venv/bin/activate
           python MFCode.py
-          python Benchmark.py
           python Stkcode.py
           python Holdings.py
-          python "Historical Returns.py"
-          python "Index Latest.py"
-          python "Peer Comparison.py"
-          python "Scheme Risk.py"
-          python "Returns Data.py"
-
+          
       - name: Commit new CSV files
         run: |
           git config --local user.email "actions@github.com"

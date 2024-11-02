@@ -2,8 +2,8 @@ name: Run Python Scripts and Commit CSV Files
 
 on:
   workflow_dispatch:  # Trigger manually
-  schedule:
-    - cron: '0 0 * * *'  # Run every day at midnight
+  # schedule:
+  #  - cron: '0 0 * * *'  # Run every day at midnight
 
 jobs:
   build:
